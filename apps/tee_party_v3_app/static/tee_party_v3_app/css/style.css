@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    /* background: #A6BC52 !important; */
+}
+
+
+    .regPage{
+        width: 45%;
+        margin: 10px;
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .regPage img{
+        width: 100%;
+        padding: 0% 0% 0% 20%;
+        display: block;
+    }
+
+    .coursePage{
+        width: 40%;
+        border: 1px solid #496519;
+        display: inline-block;
+    }
+    
+    .coursePageIMG img{
+        width: 80%;
+        vertical-align: top;
+        display: inline-block;
+    }

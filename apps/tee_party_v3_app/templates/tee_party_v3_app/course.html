@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A Course</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tee_party_v3_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <nav class="navbar navbar-light bg-light">
+        <h1 class="navbar-brand">Hello, {{ golfer.first_name }}!</h1>
+        <h2 class="navbar-brand">Best Scorecard: {{ golfer.best_scorecard }}</h2>
+        <h2 class="navbar-brand">Handicap: {{ golfer.handicap }}</h2>
+        <a class="nav-link" href="/dashboard">Return to {{ golfer.first_name }}'s Page</a>
+        <form class="form-inline" action="/">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </nav>
+
+    <h2>{{ course.name }}</h2>
+    <div class="coursePage">
+        <p>{{ course.address }}</p>
+        <p>Par: {{ course.par }}</p>
+        <p>Rating: {{ course.rating }}</p>
+        <p>Slope: {{ course.slope }}</p>
+        <a class="nav-link" href="/teeTime/{{ course.id }}">Schedule a Tee Time</a>
+    </div>
+    <img class=coursePageIMG src="/static/tee_party_v3_app/images/coursePage.png" alt="course_image">
+
+
+    <table class="table table-striped">
+
+        <h1>All Courses</h1>
+        {% if golfer.user_status == "admin" %}
+        <a href="/new_course">Add a New Course</a>
+        {% endif %}
+        <thead>
+            <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Address</th>
+                <th scope="col">Par</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Slope</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody>
+
+            {% for course in courses %}
+            <tr>
+                <th scope="row"><a href="/course/{{ course.id }}">{{ course.name }}</a></th>
+                <td>{{ course.address }}</td>
+                <td>{{ course.par }}</td>
+                <td>{{ course.rating }}</td>
+                <td>{{ course.slope }}</td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update Golfer</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tee_party_v3_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <nav class="navbar navbar-light bg-light">
+        <h1 class="navbar-brand">Hello, {{ golfer.first_name }}!</h1>
+        <h2 class="navbar-brand">Best Scorecard: {{ golfer.best_scorecard }}</h2>
+        <h2 class="navbar-brand">Handicap: {{ golfer.handicap }}</h2>
+        <form class="form-inline" action="/">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </nav>
+
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/update/{{ revise.id }}" method="POST">
+
+        {% csrf_token %}
+        <div>
+            <label for="handicap">Handicap</label>
+            <input type="text" class="form-control" name="handicap" aria-describedby="handicap" placeholder="Update Your Handicap">
+            <label for="best_scorecard">Best Scorecard</label>
+            <input type="text" class="form-control" name="best_scorecard" aria-describedby="best_scorecard" placeholder="Enter a New Best Scorecard">
+        </div>
+        <a href="/dashboard" class="btn btn-danger">Cancel</a><input type="submit" class="btn btn-success" value="Submit">
+
+</body>
+
+</html>

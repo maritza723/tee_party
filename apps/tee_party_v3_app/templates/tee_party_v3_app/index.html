@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login & Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tee_party_v3_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <h1>Welcome! Sign in to manage your Tee Party!</h1>
+        <div class="regPage">
+
+            {% if messages %}
+            <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+
+            <form action="/register" method="POST">
+
+                {% csrf_token %}
+                <h2>Registration</h2>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="Enter First Name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="handicap">Handicap</label>
+                    <input type="number" class="form-control" name="handicap" placeholder="Enter Handicap">
+                </div>
+                <div class="form-group">
+                    <label for="best_scorecard">Best Scorecard</label>
+                    <input type="number" class="form-control" name="best_scorecard" placeholder="Enter Best Scorecard">
+                </div>
+                <div class="form-group">
+                    <label for=email>Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Enter Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_pw">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_pw" placeholder="Re-enter Password">
+                </div>
+                <input type="submit" class="btn btn-success" value="Register">
+            </form>
+        </div>
+        <div class="regPage">
+            <h2>Login</h2>
+            <form action="/validate_login" method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                </div>
+                <input type="submit" class="btn btn-success" value="Login">
+                <img class=regPage src="static/tee_party_v3_app/images/regPage.jpeg" alt="golf_image">
+            </form>
+        </div>
+</body>
+
+</html>
