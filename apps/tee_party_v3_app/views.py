@@ -148,7 +148,7 @@ def course(request, course_id):
     context = {
         "golfer": Golfer.objects.get(id=request.session["golfer_id"]),
         "course": Course.objects.get(id=course_id),
-        "courses": Course.objects.all()
+        "courses": Course.objects.all(),
     }
     return render(request, "tee_party_v3_app/course.html", context)
 
